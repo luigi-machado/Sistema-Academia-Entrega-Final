@@ -1,0 +1,33 @@
+/* styles.css */
+
+.info-display {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .info-item:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+  }
+  
+  .info-item strong {
+    display: inline-block;
+    width: 100px; /* Largura fixa para os labels */
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .info-item span {
+    margin-left: 100px;
+    color: #555;
+  }

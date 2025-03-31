@@ -1,0 +1,75 @@
+.profile-page {
+  width: 80%;
+  margin: 40px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Impede que elementos internos transbordem */
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.tabs button.active {
+  background: #0056b3;
+}
+
+.tabs button:hover {
+  background: #004080;
+}
+
+.content {
+  max-height: 600px; /* Defina uma altura máxima */
+  overflow-y: scroll; /* Adiciona barra de rolagem se necessário */
+  padding: 10px;
+  border-top: 2px solid #ddd;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.content li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 15px;
+  color: #333;
+}
+
+.content li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tabs button {
+    width: 100%;
+    text-align: center;
+  }
+}

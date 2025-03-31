@@ -1,0 +1,14 @@
+blinker
+click
+Flask
+Flask-SQLAlchemy  # Adicione isso
+Flask-CORS  # Adicione isso
+greenlet
+itsdangerous
+Jinja2
+MarkupSafe
+psycopg2
+python-dotenv
+SQLAlchemy
+typing_extensions
+Werkzeug

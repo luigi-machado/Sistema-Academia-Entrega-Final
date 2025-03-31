@@ -1,0 +1,34 @@
+.feedback-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 10px 20px;
+    border-radius: 7px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .feedback-popup.success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  .feedback-popup.error {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .feedback-message {
+    flex: 1;
+  }
+  
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+  }

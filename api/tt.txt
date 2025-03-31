@@ -1,0 +1,101 @@
++-------------------+       +-------------------+       +-------------------+
+|      ALUNO        |       |     FUNCIONARIO   |       |      PLANO        |
++-------------------+       +-------------------+       +-------------------+
+| PK matricula (INT)|       | PK NIT (INT)      |       | PK id_plano (SERIAL)
+| nome (VARCHAR45)  |       | nome (VARCHAR45)  |       | nome (VARCHAR45)  |
+| data_nascimento   |       | data_nascimento   |       | valor (FLOAT)     |
+| cpf (VARCHAR45)   |       | cpf (VARCHAR45)   |       | descricao (VARCHAR200)
+| email (VARCHAR45) |       | email (VARCHAR45) |       +-------------------+
+| telefone (VARCHAR)|       | telefone (VARCHAR)|               ^
+| FK plano_id_plano |       +-------------------+               |
++-------------------+               ^                           |
+        ^                          |                           |
+        |                          |                           |
+        |                  +-------+-------+                   |
+        |                  |               |                   |
+        |          +-------+-------+  +-----+--------+         |
+        |          |  INSTRUTOR    |  | ADMINISTRADOR|         |
+        |          +---------------+  +--------------+         |
+        |          | FK funcionario|  | FK funcionario|        |
+        |          | grau_academico|  | cargo (VARCHAR)|       |
+        |          +---------------+  +--------------+         |
+        |                  ^                                   |
+        |                  |                                   |
+        v                  v                                   |
++-------------------+       +-----------------------------------+
+|   ENDERECO       |       |   CONTRATO                        |
++-------------------+       +-----------------------------------+
+| PK id_endereco   |       | PK id_contrato (SERIAL)           |
+| logradouro       |       | salario (FLOAT)                   |
+| cep              |       | data_contratacao (DATE)           |
+| rua              |       | data_final (DATE)                 |
+| num_casa         |       | FK funcionario_NIT (INT)          |
+| bairro           |       +-----------------------------------+
+| cidade           |
+| FK aluno_matricula|
+| FK funcionario_nit|
++-------------------+
+
++-------------------+       +-------------------+       +-------------------+
+| AVALIACAO_FISICA |       |      TREINO       |       |    EXERCICIO      |
++-------------------+       +-------------------+       +-------------------+
+| PK id_avaliacao  |       | PK id_treino      |       | PK id_exercicio   |
+| altura (FLOAT)   |       | objetivo (VARCHAR)|       | nome (VARCHAR45)  |
+| peso (FLOAT)     |       | dificuldade (VARCHAR)     | musculo (VARCHAR45)|
+| observacoes      |       +-------------------+       | series (INT)      |
+| biotipo (VARCHAR)|               ^                   | repeticoes (INT)  |
+| medidas (VARCHAR)|               |                   +-------------------+
+| FK aluno_matricula               |                           ^
++-------------------+               |                           |
+        ^                          v                           |
+        |                  +-------------------+               |
+        |                  | TREINO_HAS_ALUNO |               |
+        |                  +-------------------+               |
+        |                  | FK treino_id     |               |
+        |                  | FK aluno_matricula               |
+        |                  +-------------------+               |
+        |                          ^                           |
+        |                          |                           |
+        |                  +-------+-------+                   |
+        |                  |               |                   |
+        +------------------+               +-------------------+
+                           | EXERCICIO_HAS_TREINO |  | EXERCICIO_HAS_APARELHO |
+                           +-------------------+  +-------------------+
+                           | FK exercicio_id    |  | FK exercicio_id    |
+                           | FK treino_id       |  | FK aparelho_id     |
+                           +-------------------+  +-------------------+
+                                                           ^
+                                                           |
+                                                   +-------------------+
+                                                   |     APARELHO      |
+                                                   +-------------------+
+                                                   | PK id_aparelho    |
+                                                   | nome (VARCHAR45)  |
+                                                   | quantidade (INT)  |
+                                                   | disponibilidade   |
+                                                   +-------------------+
+
++-------------------+       +-------------------+       +-------------------+
+|       AULA        |       |   VISITANTES      |       |     USUARIO       |
++-------------------+       +-------------------+       +-------------------+
+| PK id_aula        |       | PK id_visitantes  |       | PK id_usuario     |
+| horario (VARCHAR) |       | nome (VARCHAR45)  |       | FK funcionario_NIT|
+| tipo (VARCHAR)    |       | data_visita (DATE)|       | username (VARCHAR)|
+| sala (VARCHAR)    |       | telefone (VARCHAR)|       | senha_hash (VARCHAR)
++-------------------+       | qnt_visitas (INT) |       | is_admin (BOOL)   |
+        ^                  +-------------------+       +-------------------+
+        |
+        |
++-------+-------+       +-------------------+
+| AULA_HAS_ALUNO|       | AULA_HAS_FUNCIONARIO
++---------------+       +-------------------+
+| FK aula_id    |       | FK aula_id        |
+| FK aluno_matricula    | FK funcionario_NIT|
++---------------+       +-------------------+
+
++-------------------------------------------+
+| INSTRUTOR_HAS_AVALIACAO_FISICA            |
++-------------------------------------------+
+| FK instrutor_funcionario_NIT              |
+| FK avaliacao_fisica_id                    |
++-------------------------------------------+
