@@ -10,7 +10,13 @@ USER = os.getenv("USER")
 DB = os.getenv("DB")
 
 DATABASE_URL = f"postgresql://{USER}:{PASSWORD}@{HOST}/{DB}"
-engine = create_engine(DATABASE_URL)
+engine = engine = create_engine(
+    DATABASE_URL,
+    pool_size=30,
+    max_overflow=60,
+    pool_timeout=5,
+    pool_recycle=1800
+)
 
 if __name__ == '__main__':
     try:

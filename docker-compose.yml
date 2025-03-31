@@ -46,15 +46,6 @@ services:
     networks:
       - backend
   
-  frontend:
-    container_name: frontend
-    ports:
-      - "5173:5173"
-    networks:
-      - backend
-    build: ./frontend
-    volumes:
-      - ./frontend:/app
 
 
 # Definir as redes

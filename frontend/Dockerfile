@@ -1,13 +1,13 @@
-FROM node:22-alpine
+FROM node:23-alpine
 
 # Define o diretório de trabalho no container
 WORKDIR /app
 
 # Copia apenas os arquivos necessários para instalar as dependências primeiro
-COPY package.json package-lock.json ./
+COPY package.json  ./
 
 # Instala as dependências do projeto
-RUN npm install
+RUN npm install .
 # Copia o restante dos arquivos do projeto para o container
 COPY . .
 

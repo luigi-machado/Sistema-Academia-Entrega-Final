@@ -122,7 +122,7 @@ export default function EditarAluno({ submitUrl }) {
                         num_casa: response.data.aluno.endereco.num_casa,
                         bairro: response.data.aluno.endereco.bairro,
                         cidade: response.data.aluno.endereco.cidade,
-                        plano_id: response.data.aluno.plano_id,
+                        plano_id: response.data.aluno.plano.id_plano,
                         ids_aula:response.data.aluno.ids_aula,
                         ids_treino:response.data.aluno.ids_treino
                     })
@@ -480,11 +480,10 @@ export default function EditarAluno({ submitUrl }) {
                         <select
                             id="plano_id"
                             name="plano_id"
-                            value={formData.plano_id}
+                            value={parseInt(formData.plano_id,10)}
                             onChange={handleChange}
                             required
                         >
-                            <option value="">Selecione...</option>
                             {planos.length > 0 ? (
                                 planos.map((plano) => (
                                     <option key={plano.id} value={plano.id}>
