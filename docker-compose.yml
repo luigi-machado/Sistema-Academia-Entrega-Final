@@ -1,0 +1,68 @@
+
+
+services:
+  python-api-back:
+    build: ./api
+    container_name: flask-api
+    volumes:
+      - ./api:/api
+    environment:
+      - PASSWORD_BD=password
+      - HOST=postgres-db:5432
+      - USER=user
+      - DB=mydb
+      - SECRET_KEY=FFG2c
+    ports:
+      - "5000:5000"
+    networks:
+      - backend
+
+      # Serviço do banco de dados PostgreSQL
+  db:
+    image: postgres:13
+    container_name: postgres-db
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=mydb
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - backend
+    ports:
+      - "5432:5432" # Expondo a porta do PostgreSQL
+
+  # Serviço do pgAdmin para gerenciar o PostgreSQL
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "80:80" # Expondo a interface web do pgAdmin na porta 5050
+    depends_on:
+      - db
+    networks:
+      - backend
+  
+  frontend:
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - backend
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+
+
+# Definir as redes
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge
+
+volumes:
+  pg_data:
