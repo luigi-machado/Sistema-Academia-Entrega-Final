@@ -14,7 +14,7 @@ export default function ShowAvFisica({viewUrl}) {
     const [username, setUsername] = useState('');
     const [IsAdmin, setIsAdmin] = useState('');
     
-    const labels = ["altura", "peso", "observacoes","biotipo","medidas","aluno_matricula"]; // Mesmo headers da tabela
+    const labels = ["altura", "peso", "observacoes","biotipo","medidas","aluno_matricula","instrutor_NIT"]; // Mesmo headers da tabela
 
     //const plano =  { Nome: ["Plano A"], Valor: ["220,00"], Descricao: ["asdfasdfgadefgsd"] }
 
